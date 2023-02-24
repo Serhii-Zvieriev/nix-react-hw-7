@@ -10,7 +10,7 @@ import LapTime from "../LapTime/LapTime";
 import ClockFace from "../ClockFace/ClockFace";
 import Button from "../Button/Button";
 
-export default function Stopwatch({ time, setStopwatchOn }) {
+export default function Stopwatch({ time }) {
   const [amountOfTime, setAmountOfTime] = useState(time);
   const [lapTime, setLapTime] = useState([]);
   const [isCounting, setIsCounting] = useState(false);
@@ -76,7 +76,7 @@ export default function Stopwatch({ time, setStopwatchOn }) {
     currenUser = usersData[usersData.length - 1];
     dispatch(deleteUser(currenUser.id));
     dispatch(addUser({ ...currenUser, time: amountOfTime }));
-    setStopwatchOn(false);
+    // setStopwatchOn(false);
   };
 
   return (

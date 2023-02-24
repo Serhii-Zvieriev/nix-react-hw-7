@@ -1,18 +1,21 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useSelector } from "react-redux";
+import { Routes, Route } from "react-router-dom";
 
 import Stopwatch from "./components/Stopwatch/Stopwatch";
 import Searchbar from "./components/Searchbar/Searchbar";
 import CardList from "./components/CardList/CardList";
 import Registration from "./components/Registration/Registration";
 import Total from "./components/Total/Total";
+import CompetitionList from "./components/CompetitionList/CompetitionList";
 import { getUsers } from "./redux/usersSlice";
+import { getCompetition } from "./redux/competitionSlice";
 import "./App.css";
 
 function App() {
   const usersData = useSelector(getUsers);
-  // console.log(usersData);
-  const [stopwatchOn, setStopwatchOn] = useState(false);
+  const competitionsData = useSelector(getCompetition);
+
   const [filter, setFilter] = useState("");
 
   const filterHendler = ({ target }) => {
@@ -31,22 +34,35 @@ function App() {
 
   return (
     <div className="container">
-      {!stopwatchOn && (
-        <>
-          <div className="leftSide">
-            <Searchbar filter={filter} onChange={filterHendler} />
-            <CardList usersData={filterUsersOrId()} />
-          </div>
-          <div className="rightSide">
-            <Registration setStopwatchOn={setStopwatchOn} />
-            <Total />
-          </div>
-        </>
-      )}
-
-      {stopwatchOn && (
-        <Stopwatch time="00:00:00" setStopwatchOn={setStopwatchOn} />
-      )}
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <div className="leftSide">
+              {/* <Searchbar filter={filter} onChange={filterHendler} />
+              <CardList usersData={filterUsersOrId()} /> */}
+              <CompetitionList competitionsData={competitionsData} />
+            </div>
+          }
+        />
+        <Route
+          path="/registration"
+          element={
+            <div className="rightSide">
+              {/* <Registration setStopwatchOn={setStopwatchOn} /> */}
+              <Registration />
+              <Total />
+            </div>
+          }
+        />
+        <Route
+          path="/stopwatch"
+          element={
+            // <Stopwatch time="00:00:00" setStopwatchOn={setStopwatchOn} />
+            <Stopwatch time="00:00:00" />
+          }
+        />
+      </Routes>
     </div>
   );
 }

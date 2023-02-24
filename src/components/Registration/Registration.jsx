@@ -1,16 +1,12 @@
 import { useDispatch } from "react-redux";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 
 import Button from "../Button/Button";
 import { addUser } from "../../redux/usersSlice";
 
-export default function Registration({ setStopwatchOn }) {
+export default function Registration() {
   const username = useRef();
   const surname = useRef();
-
-  // const [idCurrent, setIdCurrent] = useState("");
-  // const [nameCurrent, setNameCurrent] = useState("");
-  // const [surnameCurrent, setSurnameCurrent] = useState("");
 
   const dispatch = useDispatch();
   const shortid = require("shortid");
@@ -23,12 +19,9 @@ export default function Registration({ setStopwatchOn }) {
         surname: surname.current.value,
       })
     );
-    setStopwatchOn(true);
+    // setStopwatchOn(true);
     username.current.value = "";
     surname.current.value = "";
-    // setIdCurrent(shortid.generate());
-    // setNameCurrent(username.current.value);
-    // setSurnameCurrent(surname.current.value);
   };
 
   return (
@@ -54,7 +47,6 @@ export default function Registration({ setStopwatchOn }) {
       ></input>
 
       <Button name="Register participant" fn={addUserFn} />
-      {/* <button type="button">Register participant</button> */}
     </div>
   );
 }

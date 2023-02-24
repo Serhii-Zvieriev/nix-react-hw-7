@@ -32,13 +32,6 @@ export const usersSlice = createSlice({
   initialState,
 
   reducers: {
-    // addName: (state, action) => {
-    //   state.name = action.payload;
-    // },
-    // addSurname: (state, action) => {
-    //   state.surname = action.payload;
-    // },
-    // addUser: (state, action) => state.push(action.payload),
     addUser: (state, action) => [...state, action.payload],
     deleteUser: (state, action) => {
       return state.filter((user) => user.id !== action.payload);
