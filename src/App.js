@@ -8,13 +8,15 @@ import CardList from "./components/CardList/CardList";
 import Registration from "./components/Registration/Registration";
 import Total from "./components/Total/Total";
 import CompetitionList from "./components/CompetitionList/CompetitionList";
+import Winner from "./components/Winner/Winner";
+
 import { getUsers } from "./redux/usersSlice";
-import { getCompetition } from "./redux/competitionSlice";
+import { getAllCompetition } from "./redux/competitionSlice";
 import "./App.css";
 
 function App() {
   const usersData = useSelector(getUsers);
-  const competitionsData = useSelector(getCompetition);
+  const competitionsData = useSelector(getAllCompetition);
 
   const [filter, setFilter] = useState("");
 
@@ -45,6 +47,7 @@ function App() {
             </div>
           }
         />
+        <Route path="/competition/:competitionId" element={<Winner />} />
         <Route
           path="/registration"
           element={

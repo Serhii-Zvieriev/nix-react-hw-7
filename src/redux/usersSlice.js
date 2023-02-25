@@ -19,12 +19,6 @@ const initialState = [
     surname: "",
     time: "00:00:13",
   },
-  {
-    id: "4",
-    name: "Petro",
-    surname: "",
-    time: "00:00:10",
-  },
 ];
 
 export const usersSlice = createSlice({
